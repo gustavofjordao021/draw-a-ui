@@ -21,7 +21,7 @@ export default function Home() {
 		<>
 			<div className={'tldraw__editor'}>
 				<Tldraw persistenceKey="tldraw" shapeUtils={shapeUtils} shareZone={<ExportButton />}>
-					<APIKeyInput />
+					{/* <APIKeyInput /> */}
 					<LockupLink />
 				</Tldraw>
 			</div>

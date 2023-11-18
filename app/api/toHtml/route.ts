@@ -53,10 +53,11 @@ export async function POST(request: Request) {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${apiKey ? apiKey : process.env.OPENAI_API_KEY}`,
+				Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
 			},
 			body: JSON.stringify(body),
 		})
+		console.log(process.env.OPENAI_API_KEY)
 		json = await resp.json()
 	} catch (e) {
 		console.log(e)
