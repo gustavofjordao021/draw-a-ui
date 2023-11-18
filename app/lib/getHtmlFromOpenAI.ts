@@ -17,12 +17,10 @@ Respond ONLY with the contents of the html file.`
 export async function getHtmlFromOpenAI({
 	image,
 	html,
-	apiKey,
 	text,
 }: {
 	image: string
 	html: string
-	apiKey: string
 	text: string
 }) {
 	const body: GPT4VCompletionRequest = {
@@ -62,25 +60,20 @@ export async function getHtmlFromOpenAI({
 	}
 
 	let json = null
-	if (!apiKey) {
-		throw Error('You need to provide an API key (sorry)')
-	}
 	try {
-		const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+		const response = await fetch('/api/toHtml', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				Authorization: `Bearer ${apiKey}`,
 			},
-			body: JSON.stringify(body),
+			body: JSON.stringify({ image, html, text }),
 		})
-		console.log(resp)
-		json = await resp.json()
+		const json = await response.json()
+		return json
 	} catch (e) {
-		console.log(e)
+		console.error(e)
+		throw e
 	}
-
-	return json
 }
 
 type MessageContent =

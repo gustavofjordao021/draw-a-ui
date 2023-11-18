@@ -4,11 +4,9 @@ import { ChangeEvent, useCallback } from 'react'
 export function APIKeyInput() {
 	const breakpoint = useBreakpoint()
 
-	// Store the API key locally, but ONLY in development mode
+	// Store the API key in any environment
 	const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-		if (process.env.NODE_ENV === 'development') {
-			localStorage.setItem('makeitreal_key', e.target.value)
-		}
+		localStorage.setItem('makeitreal_key', e.target.value)
 	}, [])
 
 	return (

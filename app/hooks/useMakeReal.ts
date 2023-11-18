@@ -9,11 +9,10 @@ export function useMakeReal() {
 
 	return useCallback(async () => {
 		const input = document.getElementById('openai_key_risky_but_cool') as HTMLInputElement
-		const apiKey = input?.value ?? null
 		track('make_real', { timestamp: Date.now() })
 
 		try {
-			await makeReal(editor, apiKey)
+			await makeReal(editor)
 		} catch (e: any) {
 			console.error(e)
 			toast.addToast({

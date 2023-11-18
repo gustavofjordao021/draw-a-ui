@@ -3,7 +3,7 @@ import { PreviewShape } from '../PreviewShape/PreviewShape'
 import { getHtmlFromOpenAI } from './getHtmlFromOpenAI'
 import { text } from 'stream/consumers'
 
-export async function makeReal(editor: Editor, apiKey: string) {
+export async function makeReal(editor: Editor) {
 	const newShapeId = createShapeId()
 	const selectedShapes = editor.getSelectedShapes()
 
@@ -59,11 +59,13 @@ export async function makeReal(editor: Editor, apiKey: string) {
 	})
 
 	const textFromShapes = getSelectionAsText(editor)
+	console.log('image ===> ', dataUrl)
+	console.log('html ===> ', previousHtml)
+	console.log('text ===> ', textFromShapes)
 	try {
 		const json = await getHtmlFromOpenAI({
 			image: dataUrl,
 			html: previousHtml,
-			apiKey,
 			text: textFromShapes,
 		})
 
