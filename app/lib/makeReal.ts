@@ -59,9 +59,6 @@ export async function makeReal(editor: Editor) {
 	})
 
 	const textFromShapes = getSelectionAsText(editor)
-	console.log('image ===> ', dataUrl)
-	console.log('html ===> ', previousHtml)
-	console.log('text ===> ', textFromShapes)
 	try {
 		const json = await getHtmlFromOpenAI({
 			image: dataUrl,
