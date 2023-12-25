@@ -10,27 +10,11 @@ let lastRequestTime = 0
 let requestCount = 0
 
 export async function POST(request: Request) {
-	const currentTime = Date.now()
-	if (currentTime - lastRequestTime > 1000) {
-		// Reset the counter and timestamp every second
-		requestCount = 0
-		lastRequestTime = currentTime
-	}
-
-	if (requestCount >= 5) {
-		// If 5 requests have been made in the current second, wait until the next second
-		await new Promise((resolve) => setTimeout(resolve, 1000 - (currentTime - lastRequestTime)))
-		lastRequestTime = Date.now() // Reset last request time to the current time after waiting
-		requestCount = 0 // Reset the counter
-	}
-
-	requestCount++ // Increment the request count
-
 	const apiKey = process.env.OPENAI_API_KEY
 	const { image, html } = await request.json()
 	const body: GPT4VCompletionRequest = {
 		model: 'gpt-4-vision-preview',
-		max_tokens: 4096,
+		max_tokens: 2048,
 		temperature: 0,
 		messages: [
 			{
@@ -44,7 +28,7 @@ export async function POST(request: Request) {
 						type: 'image_url',
 						image_url: {
 							url: image,
-							detail: 'high',
+							detail: 'low',
 						},
 					},
 					{
