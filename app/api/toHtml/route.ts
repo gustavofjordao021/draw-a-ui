@@ -6,8 +6,7 @@ The final output should be a single JSX file with appropriate imports and React 
 If you need to use images, load them from a reliable source or use placeholders.
 Translate any user-provided notes, arrows, or drawings into appropriate UI elements and styles.`
 
-let lastRequestTime = 0
-let requestCount = 0
+export const maxDuration = 60
 
 export async function POST(request: Request) {
 	const apiKey = process.env.OPENAI_API_KEY
