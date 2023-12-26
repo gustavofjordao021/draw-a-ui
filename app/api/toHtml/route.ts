@@ -14,7 +14,7 @@ export async function POST(request: Request) {
 	const { image, html } = await request.json()
 	const body: GPT4VCompletionRequest = {
 		model: 'gpt-4-vision-preview',
-		max_tokens: 2048,
+		max_tokens: 4096,
 		temperature: 0,
 		messages: [
 			{
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 						type: 'image_url',
 						image_url: {
 							url: image,
-							detail: 'low',
+							detail: 'high',
 						},
 					},
 					{
